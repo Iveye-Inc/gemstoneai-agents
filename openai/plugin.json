@@ -108,7 +108,7 @@
             }
           ]
         },
-        "demo_recording_url": "https://github.com/Iveye-Inc/gemstoneai-agents/blob/main/docs/chatgpt-demo.gif"
+        "demo_recording_url": "https://raw.githubusercontent.com/Iveye-Inc/gemstoneai-agents/main/docs/chatgpt-demo.gif"
       },
       "publication": {
         "release_notes": "First release: analyze jewelry photos, find comparable listings and sales, save to a GemstoneAI collection."
