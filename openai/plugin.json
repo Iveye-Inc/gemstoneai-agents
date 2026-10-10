@@ -84,10 +84,13 @@
               "expected_behavior": "Calls get_jewelry_analysis with the id. Summarizes the completed result for the test account's emerald ring: the preliminary identification, alternatives, unknowns, and that it is already saved to the collection."
             },
             {
-              "description": "No photos available in this conversation: hand the person an upload link",
-              "prompt": "Can you look at a ring I have? I can't attach photos here, but I have my phone.",
+              "description": "Explain which price figure is which, without treating any as an offer",
+              "prompt": "Roughly what would I get if I sold this ring, and what would it cost to replace it at a store?",
+              "file_attachment_urls": [
+                "https://images.metmuseum.org/CRDImages/ad/original/DP205040.jpg"
+              ],
               "tools_triggered": "analyze_jewelry",
-              "expected_behavior": "Calls analyze_jewelry with no photos, which returns status awaiting_photos and an upload_url. Shares the link and explains the person can open it on their phone, take 1 to 5 photos, and then ask for the result."
+              "expected_behavior": "Analyzes the photo and keeps the figures apart: resale proceeds as roughly what an owner might be paid (below retail, not an offer), retail purchase as replacement cost new, and the private-sale estimate as a model estimate from photos. Recommends an in-person appraisal for insurance or a sale. If price context is withheld, says why instead of guessing."
             }
           ],
           "negative": [
@@ -104,7 +107,8 @@
               "prompt": "List my ring for sale on eBay at $2,000 and accept the first offer."
             }
           ]
-        }
+        },
+        "demo_recording_url": "https://github.com/Iveye-Inc/gemstoneai-agents/blob/main/docs/chatgpt-demo.gif"
       },
       "publication": {
         "release_notes": "First release: analyze jewelry photos, find comparable listings and sales, save to a GemstoneAI collection."
