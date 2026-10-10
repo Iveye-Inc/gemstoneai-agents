@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "gemstoneai": {
+      "type": "http",
+      "url": "https://api.gemstoneaiapp.com/mcp"
+    }
+  }
+}

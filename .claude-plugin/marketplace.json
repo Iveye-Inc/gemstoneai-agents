@@ -1,0 +1,17 @@
+{
+  "name": "gemstoneai",
+  "owner": {
+    "name": "GemstoneAI",
+    "url": "https://gemstoneaiapp.com"
+  },
+  "metadata": {
+    "description": "GemstoneAI for Claude: understand a piece of jewelry from photos, see market evidence, and save it to a collection."
+  },
+  "plugins": [
+    {
+      "name": "gemstoneai",
+      "source": "./plugins/gemstoneai",
+      "description": "Understand a piece of jewelry from photos, see comparable listings and sales, and save it to a GemstoneAI collection."
+    }
+  ]
+}

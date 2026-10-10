@@ -1,0 +1,27 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "com.gemstoneaiapp/gemstoneai",
+  "title": "GemstoneAI",
+  "description": "Analyze jewelry photos, see comparable listings and sales, and save the piece to a collection.",
+  "version": "1.0.0",
+  "websiteUrl": "https://gemstoneaiapp.com/agents",
+  "repository": {
+    "url": "https://github.com/Iveye-Inc/gemstoneai-agents",
+    "source": "github"
+  },
+  "icons": [
+    {
+      "src": "https://gemstoneaiapp.com/agents/icon-512.png",
+      "mimeType": "image/png",
+      "sizes": [
+        "512x512"
+      ]
+    }
+  ],
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://api.gemstoneaiapp.com/mcp"
+    }
+  ]
+}

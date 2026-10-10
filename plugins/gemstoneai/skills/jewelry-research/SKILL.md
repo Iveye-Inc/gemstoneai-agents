@@ -38,9 +38,9 @@ seconds.
 Lead with `identification.preliminary`, then say how firm it is. `identification.status` is
 `consistent` (repeated reads agreed, which is still not independent confirmation), `unconfirmed`, or
 `unsettled` (the reads disagree or the photos could not be read; price is withheld). Use
-`identification.basis` for the plain-language reason. Name the `alternatives`. Read out the `unknowns` that matter, and suggest
-the `next_evidence` that would settle them, usually better photos, a stamp close-up, or a
-gemologist's test.
+`identification.basis` for the plain-language reason. Name the `alternatives`. Read out the
+`unknowns` that matter, and suggest the `next_evidence` that would settle them, usually better
+photos, a stamp close-up, or a gemologist's test.
 
 Never present the result as certain, as an appraisal, or as proof of authenticity, treatment or origin.
 GemstoneAI does not give numeric confidence, so do not invent percentages.

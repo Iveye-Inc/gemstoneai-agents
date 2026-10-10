@@ -1,0 +1,12 @@
+{
+  "name": "gemstoneai",
+  "version": "1.0.0",
+  "description": "Understand a piece of jewelry from photos, see comparable listings and sales, and save it to a GemstoneAI collection.",
+  "author": {
+    "name": "GemstoneAI",
+    "url": "https://gemstoneaiapp.com"
+  },
+  "homepage": "https://gemstoneaiapp.com/agents",
+  "repository": "https://github.com/Iveye-Inc/gemstoneai-agents",
+  "keywords": ["jewelry", "gemstones", "collection", "estate", "appraisal-prep"]
+}
