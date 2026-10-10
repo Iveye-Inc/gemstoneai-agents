@@ -68,6 +68,12 @@ Results are preliminary analyses from photographs. They are not appraisals and d
 
 Photos are used to analyze the piece and are kept with it in the person's GemstoneAI account, like a scan in the app. Location data is removed from every photo. See the [Privacy Policy](https://gemstoneaiapp.com/privacy) and [Terms](https://gemstoneaiapp.com/terms).
 
+## Repository layout
+
+- `.claude-plugin/marketplace.json`, `plugins/gemstoneai/`: the Claude Code plugin (MCP server config and the jewelry-research skill)
+- `openai/`: the ChatGPT plugin package source; `python scripts/build_openai_zip.py` builds the ZIP
+- `server.json`: the entry in the [official MCP Registry](https://registry.modelcontextprotocol.io/v0.1/servers?search=com.gemstoneaiapp), published with `scripts/publish_registry.py`
+
 ## Support
 
 gemstoneaiapp@gmail.com

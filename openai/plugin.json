@@ -1,0 +1,103 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "gemstoneai",
+  "version": "1.0.0",
+  "description": "Understand a piece of jewelry from photos, see comparable listings and sales, and save it to a GemstoneAI collection.",
+  "author": {
+    "name": "GemstoneAI",
+    "email": "gemstoneaiapp@gmail.com",
+    "url": "https://gemstoneaiapp.com"
+  },
+  "homepage": "https://gemstoneaiapp.com/agents",
+  "repository": "https://github.com/Iveye-Inc/gemstoneai-agents",
+  "keywords": ["jewelry", "gemstones", "collection", "estate"],
+  "extensions": {
+    "com.openai": {
+      "onboardingSkill": "./skills/get-started/SKILL.md",
+      "interface": {
+        "displayName": "GemstoneAI",
+        "shortDescription": "Jewelry analysis from photos",
+        "longDescription": "GemstoneAI helps you understand a piece of jewelry or a loose gemstone you own. Share 1 to 5 photos and get a preliminary identification with its alternatives, what cannot be known from photos, and the evidence that would settle it, such as a stamp close-up or a gemologist's test. Ask for market evidence to see photographed comparable listings and sales, each labelled as an asking price or a realized sale, with the differences from your piece spelled out. Save the piece to your GemstoneAI collection and it opens in the GemstoneAI app on your phone. Results are preliminary analyses from photographs, not appraisals, and they never establish authenticity, treatment or origin. GemstoneAI never buys, sells, lists or contacts anyone, and it saves only when you ask. Sign in with the email you use in the GemstoneAI app; each new analysis uses a scan from your plan, the same as in the app.",
+        "developerName": "GemstoneAI",
+        "category": "Lifestyle",
+        "capabilities": [
+          "Analyze photos of a piece of jewelry",
+          "Show comparable listings and sales",
+          "Save a piece to a GemstoneAI collection"
+        ],
+        "websiteURL": "https://gemstoneaiapp.com/agents",
+        "supportURL": "https://gemstoneaiapp.com/support",
+        "privacyPolicyURL": "https://gemstoneaiapp.com/privacy",
+        "termsOfServiceURL": "https://gemstoneaiapp.com/terms",
+        "defaultPrompt": [
+          "I inherited this ring. What might it be, and what should I check next?",
+          "Find comparable listings and sales for this piece.",
+          "Analyze this pendant and save it to my GemstoneAI collection."
+        ],
+        "brandColor": "#04624C",
+        "brandColorDark": "#E6C875",
+        "composerIcon": "./assets/composer-icon.png",
+        "composerIconDark": "./assets/composer-icon-dark.png",
+        "logo": "./assets/logo.png",
+        "logoDark": "./assets/logo-dark.png"
+      },
+      "review": {
+        "commerce": false,
+        "test_cases": {
+          "positive": [
+            {
+              "description": "Identify an inherited ring from a photo, with its uncertainty",
+              "prompt": "I inherited this ring from my grandmother. What might it be, and what should I check next?",
+              "file_attachment_urls": ["https://images.metmuseum.org/CRDImages/ad/original/DP205040.jpg"],
+              "tools_triggered": ["analyze_jewelry", "get_jewelry_analysis"],
+              "expected_behavior": "Calls analyze_jewelry with the attached photo (and get_jewelry_analysis if it returns processing). Gives the preliminary identification with its alternatives, the unknowns, and next evidence such as a stamp close-up or a lab test. Does not present the result as certain or as an appraisal, and gives no confidence percentages."
+            },
+            {
+              "description": "Show market evidence with honest price labels",
+              "prompt": "What have pieces like this sold for? Show me comparable listings.",
+              "file_attachment_urls": ["https://images.metmuseum.org/CRDImages/ad/original/DP-27525-001.jpg"],
+              "tools_triggered": ["analyze_jewelry", "find_jewelry_comparables"],
+              "expected_behavior": "Analyzes the photo, then calls find_jewelry_comparables (calling again after retry_after_seconds if pending). Lists comparables with source, link and price, labels each as an asking price or a realized sale, and mentions the material differences. Keeps retail, private-sale and resale figures distinct and does not call any of them an offer or an appraisal."
+            },
+            {
+              "description": "Save an analyzed piece only when asked",
+              "prompt": "Analyze this ring and save it to my GemstoneAI collection.",
+              "file_attachment_urls": ["https://images.metmuseum.org/CRDImages/ad/original/DP-27525-001.jpg"],
+              "tools_triggered": ["analyze_jewelry", "save_collection_item"],
+              "expected_behavior": "Analyzes the photo, then calls save_collection_item because the user asked to save. Returns the reopen link that opens the piece in the GemstoneAI app. Saving the same piece again reports it as already saved."
+            },
+            {
+              "description": "Resume an earlier analysis by id",
+              "prompt": "Check on my GemstoneAI analysis ana_Q0g3ofxMJQvt5l4q and tell me what it found.",
+              "tools_triggered": ["get_jewelry_analysis"],
+              "expected_behavior": "Calls get_jewelry_analysis with the id. Summarizes the completed result for the test account's emerald ring: the preliminary identification, alternatives, unknowns, and that it is already saved to the collection."
+            },
+            {
+              "description": "No photos available in this conversation: hand the person an upload link",
+              "prompt": "Can you look at a ring I have? I can't attach photos here, but I have my phone.",
+              "tools_triggered": ["analyze_jewelry"],
+              "expected_behavior": "Calls analyze_jewelry with no photos, which returns status awaiting_photos and an upload_url. Shares the link and explains the person can open it on their phone, take 1 to 5 photos, and then ask for the result."
+            }
+          ],
+          "negative": [
+            {
+              "description": "Shopping advice for jewelry the person does not own is out of scope. The plugin should not be called; the assistant can answer generally without GemstoneAI tools.",
+              "prompt": "What is the best engagement ring under $5,000 that I should buy?"
+            },
+            {
+              "description": "GemstoneAI does not issue appraisals or certificates. The assistant may offer a preliminary analysis, must not produce an appraisal or certify authenticity, and should recommend an in-person appraisal or lab report.",
+              "prompt": "Write an official appraisal certificate for this diamond ring so my insurer accepts it."
+            },
+            {
+              "description": "GemstoneAI never buys, sells or lists items. The assistant should say it cannot list the piece and should not call save_collection_item or any other write tool as a substitute.",
+              "prompt": "List my ring for sale on eBay at $2,000 and accept the first offer."
+            }
+          ]
+        }
+      },
+      "publication": {
+        "release_notes": "First release: analyze jewelry photos, find comparable listings and sales, save to a GemstoneAI collection."
+      }
+    }
+  }
+}
